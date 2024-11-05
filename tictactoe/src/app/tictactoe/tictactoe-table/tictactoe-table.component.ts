@@ -41,10 +41,11 @@ export class TictactoeTableComponent {
 
   protected checkWinner(): Player {
     for (let i = 0; i < this.size; i++) {
-      if (this.fields()[i] !== Player.None &&
-        this.fields()[i] === this.fields()[i + 1] &&
-        this.fields()[i] === this.fields()[i + 2]) {
-        return this.fields()[i];
+      const startIndex = i * this.size;
+      if (this.fields()[startIndex] !== Player.None &&
+        this.fields()[startIndex] === this.fields()[startIndex + 1] &&
+        this.fields()[startIndex] === this.fields()[startIndex + 2]) {
+        return this.fields()[startIndex];
       }
     }
     for (let i = 0; i < this.size; i++) {

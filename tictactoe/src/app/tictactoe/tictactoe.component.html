@@ -1,6 +1,8 @@
 <div>
   <app-tictactoe-table #table/>
-  <p>Current Player: {{table.currentPlayer}}</p>
-  <p>Winner: {{table.winner}}</p>
+  <p>Current Player: {{table.currentPlayer()}}</p>
+  @if (table.winner() !== Player.None) {
+    <p>Winner: {{table.winner()}}</p>
+  }
   <button (click)="table.reset()">Reset</button>
 </div>

@@ -1,5 +1,5 @@
 import {Component, Signal, viewChild} from '@angular/core';
-import {TictactoeTableComponent} from './tictactoe-table/tictactoe-table.component';
+import {Player, TictactoeTableComponent} from './tictactoe-table/tictactoe-table.component';
 
 @Component({
   selector: 'app-tictactoe',
@@ -13,4 +13,5 @@ import {TictactoeTableComponent} from './tictactoe-table/tictactoe-table.compone
 export class TictactoeComponent {
   protected readonly table: Signal<TictactoeTableComponent> =
     viewChild.required<TictactoeTableComponent>('table');
+  protected readonly Player = Player;
 }
