@@ -12,11 +12,17 @@ import {TictactoeFieldComponent} from './tictactoe-field/tictactoe-field.compone
 })
 export class TictactoeTableComponent {
   protected readonly size: number = 3;
-  protected currentPlayer: WritableSignal<Player> = signal(Player.One);
+  public readonly currentPlayer: WritableSignal<Player> = signal(Player.One);
   protected readonly fields: WritableSignal<Player[]> = signal(new Array(this.size * this.size).fill(Player.None));
-  protected readonly winner: WritableSignal<Player> = signal(Player.None);
+  public readonly winner: WritableSignal<Player> = signal(Player.None);
 
-  handleFieldClicked(index: number): void {
+  public reset(): void {
+    this.fields.set(new Array(this.size * this.size).fill(Player.None));
+    this.currentPlayer.set(Player.One);
+    this.winner.set(Player.None);
+  }
+
+  protected handleFieldClicked(index: number): void {
     if (this.winner() !== Player.None) {
       return;
     }
@@ -33,7 +39,7 @@ export class TictactoeTableComponent {
     this.winner.set(this.checkWinner());
   }
 
-  checkWinner(): Player {
+  protected checkWinner(): Player {
     for (let i = 0; i < this.size; i++) {
       if (this.fields()[i] !== Player.None &&
         this.fields()[i] === this.fields()[i + 1] &&
