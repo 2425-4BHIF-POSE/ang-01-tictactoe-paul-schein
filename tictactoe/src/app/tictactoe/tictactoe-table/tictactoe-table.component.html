@@ -1,1 +1,7 @@
-<p>tictactoe-table works!</p>
+<div>
+  @for(field of fields(); track $index) {
+    <app-tictactoe-field [player]="field"
+                         [index]=$index
+                         (onClicked)="handleFieldClicked($event)"/>
+  }
+</div>
