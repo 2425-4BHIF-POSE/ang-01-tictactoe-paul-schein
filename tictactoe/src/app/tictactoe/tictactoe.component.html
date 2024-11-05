@@ -1,7 +1,12 @@
 <div>
   <app-tictactoe-table #table/>
   @if (table.winner() === Player.None) {
-    <p>Current Player: {{table.currentPlayer()}}</p>
+    @if (table.moveCount >= 9) {
+      <p>It's a draw!</p>
+    }
+    @else {
+      <p>Current Player: {{table.currentPlayer()}}</p>
+    }
   }
   @else {
     <p>Winner: {{table.winner()}}</p>

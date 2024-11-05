@@ -12,6 +12,7 @@ import {TictactoeFieldComponent} from './tictactoe-field/tictactoe-field.compone
 })
 export class TictactoeTableComponent {
   protected readonly size: number = 3;
+  public moveCount: number = 0;
   public readonly currentPlayer: WritableSignal<Player> = signal(Player.One);
   protected readonly fields: WritableSignal<Player[]> = signal(new Array(this.size * this.size).fill(Player.None));
   public readonly winner: WritableSignal<Player> = signal(Player.None);
@@ -20,15 +21,16 @@ export class TictactoeTableComponent {
     this.fields.set(new Array(this.size * this.size).fill(Player.None));
     this.currentPlayer.set(Player.One);
     this.winner.set(Player.None);
+    this.moveCount = 0;
   }
 
   protected handleFieldClicked(index: number): void {
-    if (this.winner() !== Player.None) {
+    if (this.winner() !== Player.None
+      || this.fields()[index] !== Player.None) {
       return;
     }
-    if (this.fields()[index] === Player.None) {
-      this.fields()[index] = this.currentPlayer();
-    }
+    this.moveCount++;
+    this.fields()[index] = this.currentPlayer();
     if (this.currentPlayer() === Player.One) {
       this.currentPlayer.set(Player.Two);
     }
