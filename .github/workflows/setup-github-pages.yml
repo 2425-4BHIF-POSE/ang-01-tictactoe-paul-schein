@@ -30,7 +30,7 @@ jobs:
     - name: Deploy to gh pages
       run: |
         cd tictactoe
-        npx angular-cli-ghpages --dir=dist/tictactoe
+        npx angular-cli-ghpages --dir=dist/tictactoe/browser
       env:
         CI: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
