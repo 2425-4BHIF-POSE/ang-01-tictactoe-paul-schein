@@ -33,4 +33,4 @@ jobs:
         npx angular-cli-ghpages --dir=dist/tictactoe/browser
       env:
         CI: true
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
